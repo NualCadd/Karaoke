@@ -1,55 +1,39 @@
 # Karaoke404
 
-Ứng dụng quản lý karaoke trên Windows, hỗ trợ quy trình từ đặt phòng đến thanh toán và báo cáo doanh thu.
+Ứng dụng quản lý karaoke trên Windows, hỗ trợ quản lý phòng, dịch vụ, đặt phòng, thanh toán và báo cáo doanh thu.
 
-## Chức năng
+## Tải ứng dụng
 
-- Quản lý phòng, loại phòng, dịch vụ và nhân viên.
-- Đặt, nhận phòng; kiểm tra trùng lịch và theo dõi phiên hát.
-- Quản lý tồn kho, tự trừ khi gọi dịch vụ, tính tiền phòng và lưu hóa đơn bằng transaction.
-- Xem/in hóa đơn RDLC, lọc doanh thu theo ngày, biểu đồ và xuất CSV.
-- Quản lý tài khoản, phân quyền Admin/Manager/Staff và bảo mật mật khẩu bằng BCrypt.
-- Hiển thị VietQR chuyển khoản khi đã cấu hình tài khoản nhận tiền.
+Tải bộ cài đặt tại:
 
-## Công nghệ
+[Download KaraokeSetup.exe](https://github.com/NualCadd/Karaoke/releases/latest)
 
-C# · Windows Forms · .NET Framework 4.7.2 · Entity Framework 6 · SQL Server LocalDB · Guna.UI2 · ReportViewer RDLC
+## Yêu cầu hệ thống
 
-## Cài đặt và chạy
+- .NET Framework 4.7.2
+- SQL Server Express LocalDB
+- Kết nối Windows Authentication
 
-**Yêu cầu:** Windows, Visual Studio hỗ trợ `.slnx` với workload **.NET Desktop Development**, .NET Framework 4.7.2 Targeting Pack và SQL Server Express LocalDB.
+## Cài đặt
 
-1. Clone repository và mở `karaoke.slnx`.
-2. Trong SSMS, kết nối `(localdb)\MSSQLLocalDB` bằng Windows Authentication và chạy toàn bộ **[Karaoke404_Setup.sql](Karaoke404_Setup.sql)**.
-3. Khôi phục NuGet packages, chọn **Build Solution** rồi chạy dự án `karaoke`.
-4. Với database mới, đăng nhập bằng `admin` / `AdminKaraoke2026!` và đổi mật khẩu ngay.
+1. Tải file `KaraokeSetup.exe`.
+2. Nhấp chuột phải vào file và chọn **Run as administrator**.
+3. Làm theo hướng dẫn trên màn hình.
+4. Bộ cài đặt sẽ cài ứng dụng và khởi tạo cơ sở dữ liệu `QuanLyKaraoke`.
+5. Sau khi hoàn tất, ứng dụng sẽ tự động mở kèm **tài khoản admin**.
 
-Có thể chạy cùng file SQL tổng bằng PowerShell tại thư mục repository thay cho SSMS:
+## Đăng nhập mặc định
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\SetupLocalDb.ps1
-```
+Thông tin tài khoản mặc định được tạo trong quá trình khởi tạo cơ sở dữ liệu.
 
-**Chỉ cần một file SQL:** `Karaoke404_Setup.sql` gồm cấu trúc, Admin, phân quyền, tồn kho và dữ liệu demo cho database trống. Đổi `TaoDuLieuMau` từ `1` thành `0` ở đầu file nếu chỉ cần cấu trúc. Chạy lại giữ mật khẩu, tồn kho và giao dịch hiện có; demo tự bỏ qua khi đã có dữ liệu nghiệp vụ.
+> Nếu tài khoản mặc định không đăng nhập được, hãy kiểm tra quá trình chạy file SQL và kết nối đến SQL Server LocalDB.
 
-Kết nối được cấu hình trong `karaoke/App.config`. Sao lưu database trước khi nâng cấp bằng file tổng. Dịch vụ cũ mới bổ sung cột tồn kho có giá trị 0; người có quyền quản lý dịch vụ nhập số lượng thực tế tại **Dịch vụ**. Nếu chưa chạy SQL, ứng dụng tự tạo database trống khi chưa tồn tại, dùng phần cấu trúc nhúng từ cùng file SQL tổng.
+## Lưu ý
 
-## Cấu hình VietQR
+Ứng dụng hiện sử dụng SQL Server Express LocalDB nên dữ liệu được lưu cục bộ trên từng máy. Ứng dụng chưa hỗ trợ đặt phòng trực tuyến, kết nối nhiều máy hoặc quản lý nhiều chi nhánh.
 
-Điền `VietQR_BIN`, `VietQR_AccountNumber` và `VietQR_ReceiverName` trong phần `appSettings` của `karaoke/App.config`, rồi build lại. Khi chạy bản đã build, sửa `karaoke.exe.config` cạnh file EXE và khởi động lại ứng dụng.
+Chỉ tài khoản Admin và Nhân viên được phép đăng nhập. Khách hàng không cần tạo tài khoản.
 
-Để trống cấu hình sẽ ẩn mã QR. Việc tạo mã cần kết nối internet; nhân viên xác nhận chuyển khoản trước khi hoàn tất thanh toán.
+## Mã nguồn
 
-## Kiểm thử
-
-Sau khi build **Debug**, chạy tại thư mục repository:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\Tests\RunInternalAccountTests.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File .\Tests\RunInternalAccountTests.ps1 -Integration
-powershell -NoProfile -ExecutionPolicy Bypass -File .\Tests\RunAccountProfileTests.ps1
-```
-
-Các bài test tích hợp cần LocalDB, quyền tạo/xóa database và phiên Windows desktop. Chúng sử dụng database thử nghiệm riêng và mở một số cửa sổ giao diện.
-
-Khi bàn giao bản chạy, giữ đầy đủ DLL và file cấu hình trong thư mục build cùng `karaoke.exe`.
+Mã nguồn và các file SQL được lưu trong repository này.
