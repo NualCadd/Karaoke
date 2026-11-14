@@ -155,9 +155,7 @@ namespace karaoke
                 btnDangNhap.Enabled = false;
                 lblThongBao.Text = "Đang kiểm tra tài khoản...";
 
-                // Keep exceptions on the worker thread until they can be reported on the UI
-                // thread. Visual Studio otherwise stops at a user-unhandled exception before
-                // the await continuation reaches the outer catch.
+                
                 LoginAttemptResult loginResult = await Task.Run(
                     () => authService.TryDangNhap(tenDangNhap, matKhau));
                 if (IsDisposed || Disposing)
@@ -191,7 +189,7 @@ namespace karaoke
                     return;
                 }
 
-                // Program disposes this form before opening FrmMain.
+                
                 txtMatKhau.Clear();
                 DialogResult = DialogResult.OK;
                 Close();
