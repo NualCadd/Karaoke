@@ -1,12 +1,3 @@
--- KARAOKE404: FILE SQL CÀI ĐẶT TỔNG
--- Chạy TOÀN BỘ file bằng SSMS trên (localdb)\MSSQLLocalDB, Windows Authentication.
--- Không cần SQLCMD mode hoặc chạy thêm các file SQL lẻ.
--- Bao gồm: cấu trúc, ràng buộc nghiệp vụ, Admin, nhóm quyền và tồn kho.
--- Sao lưu database hiện có trước khi nâng cấp; không tự đặt lại mật khẩu hoặc tồn kho.
--- Dữ liệu phía dưới là DEMO, không phải doanh thu kinh doanh thực tế.
--- Admin mới: admin / AdminKaraoke2026!; đổi mật khẩu sau lần đăng nhập đầu tiên.
--- Đây là nguồn SQL duy nhất dùng cho cài đặt, ứng dụng và kiểm thử.
-
 IF OBJECT_ID(N'tempdb..#Karaoke404SetupOptions') IS NOT NULL
     DROP TABLE #Karaoke404SetupOptions;
 CREATE TABLE #Karaoke404SetupOptions (TaoDuLieuMau bit NOT NULL);
@@ -15,9 +6,6 @@ INSERT INTO #Karaoke404SetupOptions (TaoDuLieuMau) VALUES (1);
 GO
 
 -- ==================== CẤU TRÚC VÀ PHÂN QUYỀN ====================
--- KARAOKE404_SCHEMA_BEGIN
--- KHỞI TẠO QUẢN LÝ KARAOKE: 01 + 03 + 08
--- Chạy toàn bộ file bằng SSMS. Không cần SQLCMD mode.
 -- Bao gồm các cột bảo mật mà code đăng nhập hiện tại yêu cầu.
 -- Giữ nguyên bảng nhật ký tài khoản nếu có.
 -- Chạy lại không đổi mật khẩu hoặc trạng thái Admin hiện có.
