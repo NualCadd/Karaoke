@@ -23,7 +23,7 @@ namespace karaoke
                 {
                     if (login.ShowDialog() != DialogResult.OK)
                         return;
-                } // FrmLogin is disposed before FrmMain is created.
+                } 
 
                 DialogResult result;
                 try
@@ -39,7 +39,7 @@ namespace karaoke
                     karaoke.Helpers.UserSession.Clear();
                 }
 
-                // Only logout opens a new login form. Closing FrmMain exits.
+                
                 if (result != DialogResult.Retry)
                     return;
             }
