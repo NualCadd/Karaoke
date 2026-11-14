@@ -65,9 +65,7 @@ namespace karaoke
             catch (Exception ex) { MessageBox.Show(ex.GetBaseException().Message, title); }
         }
 
-        // ============================================
-        // 1. LOAD FORM MAIN
-        // ============================================
+        
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
@@ -89,9 +87,7 @@ namespace karaoke
             }
         }
 
-        // ============================================
-        // 2. LOAD THONG KE DASHBOARD BANG EF + LINQ
-        // ============================================
+        
 
         private void ApplyAccountMode()
         {
@@ -147,9 +143,7 @@ namespace karaoke
             }
         }
 
-        // ============================================
-        // 3. LOAD CHART DOANH THU BANG EF + LINQ
-        // ============================================
+        
 
         private void LoadChartDoanhThu()
         {
@@ -185,7 +179,7 @@ namespace karaoke
                 }
             }
 
-            // Xoa du lieu Chart cu
+            
             chart1.Series.Clear();
 
             Series series = new Series("DoanhThu");
@@ -195,7 +189,7 @@ namespace karaoke
 
             for (int moc = daily ? 0 : 1; moc <= (daily ? 23 : 12); moc++)
             {
-                // Chuyen VND sang trieu dong
+                
                 double giaTri =
                     (double)(doanhThu[moc] / 1000000m);
 
@@ -206,7 +200,7 @@ namespace karaoke
             chart1.Series["DoanhThu"].Color = Color.FromArgb(16, 185, 129);
             ChartArea area = chart1.ChartAreas[0];
 
-            // Cau hinh truc X
+           
             area.AxisX.Minimum = daily ? 0 : 1;
             area.AxisX.Maximum = daily ? 23 : 12;
             area.AxisX.Interval = 1;
@@ -214,7 +208,7 @@ namespace karaoke
             area.AxisX.Title = daily ? "Giờ trong ngày" : "Tháng";
             area.AxisX.MajorGrid.Enabled = false;
 
-            // Cau hinh truc Y tu dong
+           
             area.AxisY.Minimum = 0;
             area.AxisY.Maximum = double.NaN;
             area.AxisY.Interval = 0;
@@ -225,9 +219,7 @@ namespace karaoke
             chart1.Invalidate();
         }
 
-        // ============================================
-        // 4. MO FORM CON TRONG PANEL CONTENT
-        // ============================================
+       
 
         private bool OpenChildForm(Form childForm)
         {
@@ -265,18 +257,14 @@ namespace karaoke
             return true;
         }
 
-        // ============================================
-        // 5. BUTTON QUAN LY PHONG
-        // ============================================
+        
 
         private void btnPhong_Click(object sender, EventArgs e)
         {
             if (OpenInternal(() => new FrmQuanLyPhong())) SetActiveSidebar(btnPhong);
         }
 
-        // ============================================
-        // 6. BUTTON TRANG CHU
-        // ============================================
+        
 
         private void btnTrangChu_Click(object sender, EventArgs e)
         {
