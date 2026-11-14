@@ -56,7 +56,7 @@ namespace karaoke
             {
                 lblTitle.Text = "TẠO PHIẾU ĐẶT PHÒNG MỚI";
                 btnLuu.Text = "Lưu đặt phòng";
-                // Default start: round to next 15 minutes, at least 15 min in future
+    
                 DateTime now = DateTime.Now;
                 DateTime defaultStart = now.AddMinutes(20);
                 defaultStart = new DateTime(defaultStart.Year, defaultStart.Month, defaultStart.Day, defaultStart.Hour, (defaultStart.Minute / 15) * 15, 0);
