@@ -25,8 +25,8 @@ Tải bộ cài đặt tại:
 ## Đăng nhập mặc định
 
 Thông tin tài khoản admin mặc định:
-**TÀI KHOẢN: admin**
-**MẬT KHẨU: AdminKaraoke2026!**
+-**TÀI KHOẢN: admin**
+-**MẬT KHẨU: AdminKaraoke2026!**
 
 > Nếu tài khoản mặc định không đăng nhập được, hãy kiểm tra quá trình chạy file SQL và kết nối đến SQL Server LocalDB.
 
