@@ -124,18 +124,18 @@ namespace karaoke
 
         private void InitGrids()
         {
-            // Menu Catalog Grid
+            
             dgvMenu.AutoGenerateColumns = false;
             dgvMenu.Columns.Add(new DataGridViewTextBoxColumn { Name = "TonKho", DataPropertyName = "TonKho", HeaderText = "Tồn kho", Width = 70 });
 
             FormatGridStyle(dgvMenu);
 
-            // Unconfirmed Cart Grid
+            
             dgvGioHang.AutoGenerateColumns = false;
 
             FormatGridStyle(dgvGioHang);
 
-            // Confirmed Orders Grid
+            
             dgvDaGoi.AutoGenerateColumns = false;
 
             FormatGridStyle(dgvDaGoi);
